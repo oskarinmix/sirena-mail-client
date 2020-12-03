@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import AuthContext from "./context/AuthContext";
+import Routes from "./routes/Routes";
+import useAuth from "./hooks/useAuth";
 function App() {
+  const [auth, setAuth] = useState(false);
+  const { isAuth } = useAuth();
+  const readSession = async () => {
+    const result = await isAuth();
+    if (result.data.auth) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  };
+
+  React.useEffect(() => {
+    readSession();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ auth, setAuth }}>
+      <Router>
+        <Routes />
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
