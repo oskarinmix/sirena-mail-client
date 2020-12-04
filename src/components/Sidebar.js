@@ -47,7 +47,7 @@ export default function SelectedListItem() {
         style={{ width: "75px", margin: "20px 20px" }}
       />
       <Typography variant="h6" component="h6">
-        sirena@test.com
+        test@sirena.app
       </Typography>
       <Divider />
       <List component="nav" aria-label="main mailbox folders">

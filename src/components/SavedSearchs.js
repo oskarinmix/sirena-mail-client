@@ -7,7 +7,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-// import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -68,9 +68,11 @@ const SavedSearchs = ({ setSearch, setIsToggled }) => {
 
   return (
     <div>
-      {searchs && (
+      {searchs && searchs.length > 0 ? (
         <React.Fragment>
-          <h1>Saved Search</h1>
+          <Typography variant="h4" component="h4">
+            Saved Searchs...
+          </Typography>
           <div className={classes.demo}>
             <List dense={true}>
               {searchs.map((search) => (
@@ -105,6 +107,10 @@ const SavedSearchs = ({ setSearch, setIsToggled }) => {
             </List>
           </div>
         </React.Fragment>
+      ) : (
+        <Typography variant="h4" component="h2">
+          No saved Searchs...
+        </Typography>
       )}
     </div>
   );
