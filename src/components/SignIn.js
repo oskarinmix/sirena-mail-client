@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Axios from "axios";
 import AuthContext from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,9 +62,33 @@ export default function SignIn() {
       });
       if (resp.data.auth) {
         auth.setAuth(true);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Approved",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else {
+        setEmail("");
+        setPassword("");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: resp.data.msg,
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
     } catch (error) {
       console.log(error, error);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error,
+        showConfirmButton: false,
+        timer: 1000,
+      });
     }
   };
 
@@ -107,6 +132,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
