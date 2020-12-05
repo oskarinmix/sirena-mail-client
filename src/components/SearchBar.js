@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,7 +51,7 @@ export default function SearchBar({ controls }) {
       const result = await Axios({
         method: "post",
         withCredentials: true,
-        url: "http://localhost:4000/mails",
+        url: `${process.env.REACT_APP_HOST}/mails`,
         params: { page: pagination, search },
       });
       if (result.data) {
@@ -72,7 +73,7 @@ export default function SearchBar({ controls }) {
       const result = await Axios({
         method: "post",
         withCredentials: true,
-        url: "http://localhost:4000/search",
+        url: `${process.env.REACT_APP_HOST}/search`,
         data: { search: search },
       });
 

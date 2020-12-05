@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -37,7 +38,7 @@ const SavedSearchs = ({ setSearch, setIsToggled }) => {
         const result = await Axios({
           method: "get",
           withCredentials: true,
-          url: "http://localhost:4000/search",
+          url: `${process.env.REACT_APP_HOST}/search`,
         });
 
         if (result.data.ok) {
@@ -55,7 +56,7 @@ const SavedSearchs = ({ setSearch, setIsToggled }) => {
       const result = await Axios({
         method: "delete",
         withCredentials: true,
-        url: `http://localhost:4000/search/${id}`,
+        url: `${process.env.REACT_APP_HOST}/search/${id}`,
       });
 
       if (result.data.ok) {

@@ -35,7 +35,8 @@ export default function Inbox() {
         const result = await Axios({
           method: "get",
           withCredentials: true,
-          url: "http://localhost:4000/mails",
+          // eslint-disable-next-line no-undef
+          url: `${process.env.REACT_APP_HOST}/mails`,
           params: { page: pagination },
         });
         if (result.data) {

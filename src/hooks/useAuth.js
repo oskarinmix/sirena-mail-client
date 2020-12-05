@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
 import Axios from "axios";
 const useAuth = () => {
   const logOut = async () => {
     try {
       const result = await Axios({
         method: "post",
-        url: "http://localhost:4000/auth/logout",
+        url: `${process.env.REACT_APP_HOST}/auth/logout`,
         withCredentials: true,
       });
       return result;
@@ -16,7 +17,7 @@ const useAuth = () => {
     try {
       const result = await Axios({
         method: "get",
-        url: "http://localhost:4000/auth/isauth",
+        url: `${process.env.REACT_APP_HOST}/auth/isauth`,
         withCredentials: true,
       });
       return result;

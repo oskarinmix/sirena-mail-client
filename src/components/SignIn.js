@@ -56,7 +56,8 @@ export default function SignIn() {
     try {
       const resp = await Axios({
         method: "post",
-        url: "http://localhost:4000/auth/login",
+        // eslint-disable-next-line no-undef
+        url: `${process.env.REACT_APP_HOST}/auth/login`,
         data,
         withCredentials: true,
       });
