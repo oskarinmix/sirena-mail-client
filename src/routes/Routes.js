@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import SignIn from "../components/SignIn";
 import DashBoard from "../components/Dashboard";
 import AuthContext from "../context/AuthContext";
+import Main from "../components/Main";
 
 function Routes() {
   const auth = useContext(AuthContext);
@@ -16,15 +17,12 @@ function Routes() {
         component={DashBoard}
         auth={auth.auth}
       />
+      <Route path="/" component={Main} />
     </Switch>
   );
 }
 
-const RouteRegistration = ({
-  auth,
-  component: Component,
-  ...rest
-}) => {
+const RouteRegistration = ({ auth, component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
